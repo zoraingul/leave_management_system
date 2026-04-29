@@ -6,31 +6,47 @@
 </head>
 <body>
 
-<nav>
+<div class="sidebar">
+  <h2>Leave System</h2>
+
   <a href="dashboard.html">Dashboard</a>
   <a href="apply.html">Apply Leave</a>
   <a href="history.html">History</a>
-</nav>
+</div>
 
-<h1>Apply Leave</h1>
+<div class="main">
 
-<form id="leaveForm">
-  <input type="text" id="name" placeholder="Employee Name" required>
-  <input type="text" id="dept" placeholder="Department" required>
+  <h1>Apply for Leave</h1>
 
-  <select id="type">
-    <option>Casual</option>
-    <option>Sick</option>
-    <option>Annual</option>
-  </select>
+  <form id="leaveForm">
 
-  <input type="date" id="from" required>
-  <input type="date" id="to" required>
+    <label>Employee Name</label>
+    <input type="text" id="name" required>
 
-  <textarea id="reason" placeholder="Reason"></textarea>
+    <label>Department</label>
+    <input type="text" id="dept" required>
 
-  <button type="submit">Submit Leave</button>
-</form>
+    <label>Leave Type</label>
+    <select id="type">
+      <option>Casual</option>
+      <option>Sick</option>
+      <option>Annual</option>
+    </select>
+
+    <label>From Date</label>
+    <input type="date" id="from" required>
+
+    <label>To Date</label>
+    <input type="date" id="to" required>
+
+    <label>Reason</label>
+    <textarea id="reason" rows="4"></textarea>
+
+    <button type="submit">Submit Leave</button>
+
+  </form>
+
+</div>
 
 <script src="script.js"></script>
 </body>

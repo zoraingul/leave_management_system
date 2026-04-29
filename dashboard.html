@@ -6,18 +6,33 @@
 </head>
 <body>
 
-<nav>
+<div class="sidebar">
+  <h2>Leave System</h2>
+
   <a href="dashboard.html">Dashboard</a>
   <a href="apply.html">Apply Leave</a>
   <a href="history.html">History</a>
-</nav>
+</div>
 
-<h1>Dashboard</h1>
+<div class="main">
+  <h1>Dashboard</h1>
 
-<div class="cards">
-  <div class="card">Total Leaves <br><span id="total">0</span></div>
-  <div class="card">Pending <br><span id="pending">0</span></div>
-  <div class="card">Approved <br><span id="approved">0</span></div>
+  <div class="cards">
+    <div class="card">
+      <p>Total Leaves</p>
+      <h2 id="total">0</h2>
+    </div>
+
+    <div class="card">
+      <p>Pending</p>
+      <h2 id="pending">0</h2>
+    </div>
+
+    <div class="card">
+      <p>Approved</p>
+      <h2 id="approved">0</h2>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>

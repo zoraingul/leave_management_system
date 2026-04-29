@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>History</title>
+  <title>Leave History</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav>
+<div class="sidebar">
+  <h2>Leave System</h2>
+
   <a href="dashboard.html">Dashboard</a>
   <a href="apply.html">Apply Leave</a>
   <a href="history.html">History</a>
-</nav>
+</div>
 
-<h1>Leave History</h1>
+<div class="main">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Dates</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody id="historyTable"></tbody>
-</table>
+  <h1>Leave History</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Leave Type</th>
+        <th>Dates</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody id="historyTable"></tbody>
+  </table>
+
+</div>
 
 <script src="script.js"></script>
 </body>
