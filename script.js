@@ -1,3 +1,62 @@
+
+//login system
+const loginForm =
+  document.getElementById("loginForm");
+
+if (loginForm) {
+
+  loginForm.addEventListener(
+    "submit",
+    function(e) {
+
+      e.preventDefault();
+
+      const username =
+        document.getElementById("username").value;
+
+      const role =
+        document.getElementById("role").value;
+
+      const user = {
+        username: username,
+        role: role
+      };
+
+      localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify(user)
+      );
+
+      window.location.href =
+        "dashboard.html";
+    }
+  );
+}
+
+//auth check
+const protectedPages = [
+  "dashboard.html",
+  "apply.html",
+  "history.html"
+];
+
+const currentPage =
+  window.location.pathname
+  .split("/")
+  .pop();
+
+const loggedInUser =
+  JSON.parse(
+    localStorage.getItem("loggedInUser")
+  );
+
+if (
+  protectedPages.includes(currentPage)
+  && !loggedInUser
+) {
+  window.location.href = "login.html";
+}
+
 let leaves = JSON.parse(localStorage.getItem("leaves")) || [];
 
 
@@ -32,7 +91,7 @@ if (form) {
   });
 }
 
-// history
+// history table
 const table = document.getElementById("historyTable");
 
 function renderTable(filteredLeaves) {
@@ -72,28 +131,39 @@ function renderTable(filteredLeaves) {
         </td>
 
         <td>
-          <button class="action-btn approve-btn"
-          onclick="approveLeave(${index})">
-            Approve
-          </button>
 
-          <button class="action-btn reject-btn"
-          onclick="rejectLeave(${index})"
-          style="margin-left:5px;">
-            Reject
-          </button>
+          ${
+            loggedInUser &&
+            loggedInUser.role === "Admin"
+            ?
+            `
+            <button class="action-btn approve-btn"
+            onclick="approveLeave(${index})">
+              Approve
+            </button>
 
-          <button class="action-btn"
-          onclick="editLeave(${index})"
-          style="background:#f59e0b; margin-left:5px;">
-            Edit
-          </button>
+            <button class="action-btn reject-btn"
+            onclick="rejectLeave(${index})"
+            style="margin-left:5px;">
+              Reject
+            </button>
 
-          <button class="action-btn"
-          onclick="deleteLeave(${index})"
-          style="background:#475569; margin-left:5px;">
-            Delete
-          </button>
+            <button class="action-btn"
+            onclick="editLeave(${index})"
+            style="background:#f59e0b; margin-left:5px;">
+              Edit
+            </button>
+
+            <button class="action-btn"
+            onclick="deleteLeave(${index})"
+            style="background:#475569; margin-left:5px;">
+              Delete
+            </button>
+            `
+            :
+            `No Actions`
+          }
+
         </td>
       </tr>
     `;
@@ -222,4 +292,15 @@ function editLeave(index) {
   saveLeaves();
 
   location.reload();
+}
+
+//logout
+function logout() {
+
+  localStorage.removeItem(
+    "loggedInUser"
+  );
+
+  window.location.href =
+    "login.html";
 }
