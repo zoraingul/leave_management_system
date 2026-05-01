@@ -72,7 +72,6 @@ function renderTable(filteredLeaves) {
         </td>
 
         <td>
-
           <button class="action-btn approve-btn"
           onclick="approveLeave(${index})">
             Approve
@@ -84,6 +83,17 @@ function renderTable(filteredLeaves) {
             Reject
           </button>
 
+          <button class="action-btn"
+          onclick="editLeave(${index})"
+          style="background:#f59e0b; margin-left:5px;">
+            Edit
+          </button>
+
+          <button class="action-btn"
+          onclick="deleteLeave(${index})"
+          style="background:#475569; margin-left:5px;">
+            Delete
+          </button>
         </td>
       </tr>
     `;
@@ -166,4 +176,50 @@ if (total) {
 
   approved.innerText =
     leaves.filter(l => l.status === "Approved").length;
+}
+
+
+//delete leave
+function deleteLeave(index) {
+
+  let confirmDelete = confirm(
+    "Delete this leave request?"
+  );
+
+  if (confirmDelete) {
+
+    leaves.splice(index, 1);
+
+    saveLeaves();
+
+    location.reload();
+  }
+}
+
+//edit leave
+
+function editLeave(index) {
+
+  let leave = leaves[index];
+
+  let newName = prompt(
+    "Edit Employee Name:",
+    leave.name
+  );
+
+  if (newName === null) return;
+
+  let newDept = prompt(
+    "Edit Department:",
+    leave.dept
+  );
+
+  if (newDept === null) return;
+
+  leave.name = newName;
+  leave.dept = newDept;
+
+  saveLeaves();
+
+  location.reload();
 }
